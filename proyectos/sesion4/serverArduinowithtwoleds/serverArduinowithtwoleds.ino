@@ -2,8 +2,8 @@
 #include <WebServer.h>
 
 // Parametros de la WiFi
-const char* ssid = "ESP32";             
-const char* password = "TEC12345678";   
+const char* ssid = "Tec-2";             
+const char* password = "playTime";   
 
 // IP del servidor HTTP
 IPAddress local_ip(192,168,20,1);
@@ -13,7 +13,7 @@ IPAddress subnet(255,255,255,0);
 // declaraciones
 WebServer server(80);
 uint8_t LEDpinOne = 5;
-unit8_t LEDpinTwo = 4;
+uint8_t LEDpinTwo = 4;
 bool LEDstatusTwo = LOW; 
 bool LEDstatusOne = LOW;   
 
@@ -68,7 +68,7 @@ void loop() {
 
 void handle_OnConnect() {
   LEDstatusOne = LOW;
-  LEDstatusTwo = LOW;
+  LEDstatusTwo = HIGH;
   Serial.println("GPIO5 Status: OFF");
   server.send(200, "text/html", SendHTML()); 
 }
@@ -76,17 +76,17 @@ void handle_OnConnect() {
 
 void handle_ledon() {
   LEDstatusOne = HIGH;
-  LEDstatusTwo = HIGH;
+  LEDstatusTwo = LOW;
   Serial.println("GPIO5 Status: ON");
   server.send(200, "text/html", SendHTML()); 
 }
 void handle_ledonOne() {
-  LEDstatus = HIGH;
+  LEDstatusOne = HIGH;
   Serial.println("GPIO5 Status: ON");
   server.send(200, "text/html", SendHTML()); 
 }
 void handle_ledonTwo() {
-  LEDstatus = HIGH;
+  LEDstatusTwo = LOW;
   Serial.println("GPIO5 Status: ON");
   server.send(200, "text/html", SendHTML()); 
 }
@@ -94,7 +94,7 @@ void handle_ledonTwo() {
 
 void handle_ledoff() {
   LEDstatusOne = LOW;
-  LEDstatusTwo = LOW;
+  LEDstatusTwo = HIGH;
   Serial.println("GPIO5 Status: OFF");
   server.send(200, "text/html", SendHTML()); 
 }
@@ -104,7 +104,7 @@ void handle_ledoffOne() {
   server.send(200, "text/html", SendHTML()); 
 }
 void handle_ledoffTwo() {
-  LEDstatusTwo = LOW;
+  LEDstatusTwo = HIGH;
   Serial.println("GPIO5 Status: OFF");
   server.send(200, "text/html", SendHTML()); 
 }

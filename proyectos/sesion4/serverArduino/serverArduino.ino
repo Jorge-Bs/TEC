@@ -2,8 +2,8 @@
 #include <WebServer.h>
 
 // Parametros de la WiFi
-const char* ssid = "ESP32";             
-const char* password = "TEC12345678";   
+const char* ssid = "Tec-2";             
+const char* password = "playTime";   
 
 // IP del servidor HTTP
 IPAddress local_ip(192,168,20,1);
